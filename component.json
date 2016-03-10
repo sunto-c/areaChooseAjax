@@ -1,0 +1,8 @@
+{
+    "version": "0.1.0",
+    "name": "areaChooseAjax",
+    "main": "index.js",
+    "dependencies": [
+      "jquery@1.9.1"
+    ]
+}
