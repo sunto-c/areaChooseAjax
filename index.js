@@ -18,7 +18,7 @@ function AreaChooseAjax(options) {
   this.opt = $.extend({}, options || {});
   this.el = this.opt.el;
 
-  this.selectTxt = $.t('help.pleaseSelect') || '请选择';
+  this.selectTxt = ($.t && $.t('help.pleaseSelect')) || '请选择';
 
   this.bind();
   this.init(this.opt.id);
