@@ -50,8 +50,8 @@ AreaChooseAjax.prototype.init = function (id) {
         }
         if (result.data && result.data.length) {
           $.each(result.data, function (key, item) {
-            if(!item.length)return;
-            var node = ['<select name="" id=""><option value="">' + self.selectTxt + '</option>'];
+            if (!item.length)return;
+            var node = ['<select name="" id="" data-level="' + item[0].level + '"><option value="">' + self.selectTxt + '</option>'];
             $.each(item, function (k, val) {
               if (val.isSelect) {
                 node.push('<option selected value="' + val.id + '">' + val.name + '</option>');
@@ -92,20 +92,22 @@ AreaChooseAjax.prototype.getChild = function (params) {
       child = result.data;
 
       if (child && child.length) {
-        var node = ['<select name="" id=""><option value="">' + self.selectTxt + '</option>'];
+        var node = ['<select name="" id="" data-level="' + child[0].level + '"><option value="">' + self.selectTxt + '</option>'];
         $.each(child, function (key, item) {
           node.push('<option value="' + item.id + '">' + item.name + '</option>');
         });
         node.push('</select>');
         $(self.el).append(node.join(' '));
-      }else{
-        $.isFunction(self.opt.nodata) && self.opt.nodata.call(null,params.pId);
+      } else {
+        $.isFunction(self.opt.nodata) && self.opt.nodata.call(null, params.pId);
       }
     })
 };
 
 AreaChooseAjax.prototype.onChange = function (e) {
-  var id = Number($(e.target).val()),
+  var
+    $target = $(e.target),
+    id = Number($target.val()),
     self = this;
   $(e.target).nextAll('select').remove();
   if (!id) return;
