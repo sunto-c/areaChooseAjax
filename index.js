@@ -48,6 +48,7 @@ AreaChooseAjax.prototype.init = function (id) {
           }
           return;
         }
+        $.isFunction(self.opt.init)&&self.opt.init.call(self);
         if (result.data && result.data.length) {
           $.each(result.data, function (key, item) {
             if (!item.length)return;
@@ -63,6 +64,7 @@ AreaChooseAjax.prototype.init = function (id) {
             $(self.el).append(node.join(' '));
           })
         }
+        $.isFunction(self.opt.inited)&&self.opt.inited.call(self);
       })
   } else {
     self.getChild({
